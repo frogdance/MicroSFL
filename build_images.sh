@@ -1,0 +1,24 @@
+cd simulate/backend
+docker build -t microservice_sync_splitfed_backend .
+docker tag microservice_sync_splitfed_backend frogdance/microservice_sync_splitfed_backend:latest
+docker push frogdance/microservice_sync_splitfed_backend:latest
+
+cd ../dashboard
+docker build -t microservice_sync_splitfed_dashboard .
+docker tag microservice_sync_splitfed_dashboard frogdance/microservice_sync_splitfed_dashboard:latest
+docker push frogdance/microservice_sync_splitfed_dashboard:latest
+
+cd ../client
+docker build -t microservice_sync_splitfed_client .
+docker tag microservice_sync_splitfed_client frogdance/microservice_sync_splitfed_client:latest
+docker push frogdance/microservice_sync_splitfed_client:latest
+
+cd ../splitserver
+docker build -t microservice_sync_splitfed_splitserver .
+docker tag microservice_sync_splitfed_splitserver frogdance/microservice_sync_splitfed_splitserver:latest
+docker push frogdance/microservice_sync_splitfed_splitserver:latest
+
+cd ../fedserver
+docker build -t microservice_sync_splitfed_fedserver .
+docker tag microservice_sync_splitfed_fedserver frogdance/microservice_sync_splitfed_fedserver:latest
+docker push frogdance/microservice_sync_splitfed_fedserver:latest

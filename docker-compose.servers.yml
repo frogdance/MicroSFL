@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  fed_server:
+    container_name: fedserver
+    image: frogdance/microservice_sync_splitfed_fedserver:latest
+    networks:
+      - cluster_interface
+    ports:
+      - "8001:8000"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+    environment:
+      - BACKEND_URL=http://host.docker.internal:8000
+      - FED_SERVER_ID=fed_server
+      - FED_SERVER_IP=host.docker.internal:8001
+
+  split_server:
+    container_name: splitserver
+    image: frogdance/microservice_sync_splitfed_splitserver:latest
+    networks:
+      - cluster_interface
+    ports:
+      - "8002:8000"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+    environment:
+      - BACKEND_URL=http://host.docker.internal:8000
+      - SPLIT_SERVER_ID=split_server
+      - SPLIT_SERVER_IP=host.docker.internal:8002
+      - NVIDIA_VISIBLE_DEVICES=all
+
+networks:
+  cluster_interface:
+    driver: bridge

@@ -1,0 +1,446 @@
+version: '3.8'
+
+services:
+  client1:
+    container_name: client1
+    image: frogdance/microservice_sync_splitfed_client:latest
+    networks:
+      - cluster_interface
+    ports:
+      - "8005:8000"
+    environment:
+      - BACKEND_URL=http://host.docker.internal:8000
+      - CLIENT_ID=1
+      - CLIENT_IP=host.docker.internal:8005
+      - SPLIT_SERVER=http://host.docker.internal:8002
+      - FED_SERVER=http://host.docker.internal:8001
+      - NVIDIA_VISIBLE_DEVICES=all
+    volumes:
+      - ./simulate/volumes/client1:/app/data/
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+
+  client2:
+    container_name: client2
+    image: frogdance/microservice_sync_splitfed_client:latest
+    networks:
+      - cluster_interface
+    ports:
+      - "8006:8000"
+    environment:
+      - BACKEND_URL=http://host.docker.internal:8000
+      - CLIENT_ID=2
+      - CLIENT_IP=host.docker.internal:8006
+      - SPLIT_SERVER=http://host.docker.internal:8002
+      - FED_SERVER=http://host.docker.internal:8001
+      - NVIDIA_VISIBLE_DEVICES=all
+    volumes:
+      - ./simulate/volumes/client2:/app/data/
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+
+  client3:
+    container_name: client3
+    image: frogdance/microservice_sync_splitfed_client:latest
+    networks:
+      - cluster_interface
+    ports:
+      - "8007:8000"
+    environment:
+      - BACKEND_URL=http://host.docker.internal:8000
+      - CLIENT_ID=3
+      - CLIENT_IP=host.docker.internal:8007
+      - SPLIT_SERVER=http://host.docker.internal:8002
+      - FED_SERVER=http://host.docker.internal:8001
+      - NVIDIA_VISIBLE_DEVICES=all
+    volumes:
+      - ./simulate/volumes/client3:/app/data/
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+
+  client4:
+    container_name: client4
+    image: frogdance/microservice_sync_splitfed_client:latest
+    networks:
+      - cluster_interface
+    ports:
+      - "8008:8000"
+    environment:
+      - BACKEND_URL=http://host.docker.internal:8000
+      - CLIENT_ID=4
+      - CLIENT_IP=host.docker.internal:8008
+      - SPLIT_SERVER=http://host.docker.internal:8002
+      - FED_SERVER=http://host.docker.internal:8001
+      - NVIDIA_VISIBLE_DEVICES=all
+    volumes:
+      - ./simulate/volumes/client4:/app/data/
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+
+  client5:
+    container_name: client5
+    image: frogdance/microservice_sync_splitfed_client:latest
+    networks:
+      - cluster_interface
+    ports:
+      - "8009:8000"
+    environment:
+      - BACKEND_URL=http://host.docker.internal:8000
+      - CLIENT_ID=5
+      - CLIENT_IP=host.docker.internal:8009
+      - SPLIT_SERVER=http://host.docker.internal:8002
+      - FED_SERVER=http://host.docker.internal:8001
+      - NVIDIA_VISIBLE_DEVICES=all
+    volumes:
+      - ./simulate/volumes/client5:/app/data/
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+
+  # client6:
+  #   container_name: client6
+  #   image: frogdance/microservice_sync_splitfed_client:latest
+  #   networks:
+  #     - cluster_interface
+  #   ports:
+  #     - "8010:8000"
+  #   environment:
+  #     - BACKEND_URL=http://host.docker.internal:8000
+  #     - CLIENT_ID=6
+  #     - CLIENT_IP=host.docker.internal:8010
+  #     - SPLIT_SERVER=http://host.docker.internal:8002
+  #     - FED_SERVER=http://host.docker.internal:8001
+  #     - NVIDIA_VISIBLE_DEVICES=all
+  #   volumes:
+  #     - ./simulate/volumes/client6:/app/data/
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - capabilities: [gpu]
+
+  # client7:
+  #   container_name: client7
+  #   image: frogdance/microservice_sync_splitfed_client:latest
+  #   networks:
+  #     - cluster_interface
+  #   ports:
+  #     - "8011:8000"
+  #   environment:
+  #     - BACKEND_URL=http://host.docker.internal:8000
+  #     - CLIENT_ID=7
+  #     - CLIENT_IP=host.docker.internal:8011
+  #     - SPLIT_SERVER=http://host.docker.internal:8002
+  #     - FED_SERVER=http://host.docker.internal:8001
+  #     - NVIDIA_VISIBLE_DEVICES=all
+  #   volumes:
+  #     - ./simulate/volumes/client7:/app/data/
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - capabilities: [gpu]
+
+  # client8:
+  #   container_name: client8
+  #   image: frogdance/microservice_sync_splitfed_client:latest
+  #   networks:
+  #     - cluster_interface
+  #   ports:
+  #     - "8012:8000"
+  #   environment:
+  #     - BACKEND_URL=http://host.docker.internal:8000
+  #     - CLIENT_ID=8
+  #     - CLIENT_IP=host.docker.internal:8012
+  #     - SPLIT_SERVER=http://host.docker.internal:8002
+  #     - FED_SERVER=http://host.docker.internal:8001
+  #     - NVIDIA_VISIBLE_DEVICES=all
+  #   volumes:
+  #     - ./simulate/volumes/client8:/app/data/
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - capabilities: [gpu]
+
+  # client9:
+  #   container_name: client9
+  #   image: frogdance/microservice_sync_splitfed_client:latest
+  #   networks:
+  #     - cluster_interface
+  #   ports:
+  #     - "8013:8000"
+  #   environment:
+  #     - BACKEND_URL=http://host.docker.internal:8000
+  #     - CLIENT_ID=9
+  #     - CLIENT_IP=host.docker.internal:8013
+  #     - SPLIT_SERVER=http://host.docker.internal:8002
+  #     - FED_SERVER=http://host.docker.internal:8001
+  #     - NVIDIA_VISIBLE_DEVICES=all
+  #   volumes:
+  #     - ./simulate/volumes/client9:/app/data/
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - capabilities: [gpu]
+
+  # client10:
+  #   container_name: client10
+  #   image: frogdance/microservice_sync_splitfed_client:latest
+  #   networks:
+  #     - cluster_interface
+  #   ports:
+  #     - "8014:8000"
+  #   environment:
+  #     - BACKEND_URL=http://host.docker.internal:8000
+  #     - CLIENT_ID=10
+  #     - CLIENT_IP=host.docker.internal:8014
+  #     - SPLIT_SERVER=http://host.docker.internal:8002
+  #     - FED_SERVER=http://host.docker.internal:8001
+  #     - NVIDIA_VISIBLE_DEVICES=all
+  #   volumes:
+  #     - ./simulate/volumes/client10:/app/data/
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - capabilities: [gpu]
+
+  # client11:
+  #   container_name: client11
+  #   image: frogdance/microservice_sync_splitfed_client:latest
+  #   networks:
+  #     - cluster_interface
+  #   ports:
+  #     - "8015:8000"
+  #   environment:
+  #     - BACKEND_URL=http://host.docker.internal:8000
+  #     - CLIENT_ID=11
+  #     - CLIENT_IP=host.docker.internal:8015
+  #     - SPLIT_SERVER=http://host.docker.internal:8002
+  #     - FED_SERVER=http://host.docker.internal:8001
+  #     - NVIDIA_VISIBLE_DEVICES=all
+  #   volumes:
+  #     - ./simulate/volumes/client11:/app/data/
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - capabilities: [gpu]
+
+  # client12:
+  #   container_name: client12
+  #   image: frogdance/microservice_sync_splitfed_client:latest
+  #   networks:
+  #     - cluster_interface
+  #   ports:
+  #     - "8016:8000"
+  #   environment:
+  #     - BACKEND_URL=http://host.docker.internal:8000
+  #     - CLIENT_ID=12
+  #     - CLIENT_IP=host.docker.internal:8016
+  #     - SPLIT_SERVER=http://host.docker.internal:8002
+  #     - FED_SERVER=http://host.docker.internal:8001
+  #     - NVIDIA_VISIBLE_DEVICES=all
+  #   volumes:
+  #     - ./simulate/volumes/client12:/app/data/
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - capabilities: [gpu]
+
+  # client13:
+  #   container_name: client13
+  #   image: frogdance/microservice_sync_splitfed_client:latest
+  #   networks:
+  #     - cluster_interface
+  #   ports:
+  #     - "8017:8000"
+  #   environment:
+  #     - BACKEND_URL=http://host.docker.internal:8000
+  #     - CLIENT_ID=13
+  #     - CLIENT_IP=host.docker.internal:8017
+  #     - SPLIT_SERVER=http://host.docker.internal:8002
+  #     - FED_SERVER=http://host.docker.internal:8001
+  #     - NVIDIA_VISIBLE_DEVICES=all
+  #   volumes:
+  #     - ./simulate/volumes/client13:/app/data/
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - capabilities: [gpu]
+
+  # client14:
+  #   container_name: client14
+  #   image: frogdance/microservice_sync_splitfed_client:latest
+  #   networks:
+  #     - cluster_interface
+  #   ports:
+  #     - "8018:8000"
+  #   environment:
+  #     - BACKEND_URL=http://host.docker.internal:8000
+  #     - CLIENT_ID=14
+  #     - CLIENT_IP=host.docker.internal:8018
+  #     - SPLIT_SERVER=http://host.docker.internal:8002
+  #     - FED_SERVER=http://host.docker.internal:8001
+  #     - NVIDIA_VISIBLE_DEVICES=all
+  #   volumes:
+  #     - ./simulate/volumes/client14:/app/data/
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - capabilities: [gpu]
+
+  # client15:
+  #   container_name: client15
+  #   image: frogdance/microservice_sync_splitfed_client:latest
+  #   networks:
+  #     - cluster_interface
+  #   ports:
+  #     - "8019:8000"
+  #   environment:
+  #     - BACKEND_URL=http://host.docker.internal:8000
+  #     - CLIENT_ID=15
+  #     - CLIENT_IP=host.docker.internal:8019
+  #     - SPLIT_SERVER=http://host.docker.internal:8002
+  #     - FED_SERVER=http://host.docker.internal:8001
+  #     - NVIDIA_VISIBLE_DEVICES=all
+  #   volumes:
+  #     - ./simulate/volumes/client15:/app/data/
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - capabilities: [gpu]
+
+  # client16:
+  #   container_name: client16
+  #   image: frogdance/microservice_sync_splitfed_client:latest
+  #   networks:
+  #     - cluster_interface
+  #   ports:
+  #     - "8020:8000"
+  #   environment:
+  #     - BACKEND_URL=http://host.docker.internal:8000
+  #     - CLIENT_ID=16
+  #     - CLIENT_IP=host.docker.internal:8020
+  #     - SPLIT_SERVER=http://host.docker.internal:8002
+  #     - FED_SERVER=http://host.docker.internal:8001
+  #     - NVIDIA_VISIBLE_DEVICES=all
+  #   volumes:
+  #     - ./simulate/volumes/client16:/app/data/
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - capabilities: [gpu]
+
+  # client17:
+  #   container_name: client17
+  #   image: frogdance/microservice_sync_splitfed_client:latest
+  #   networks:
+  #     - cluster_interface
+  #   ports:
+  #     - "8021:8000"
+  #   environment:
+  #     - BACKEND_URL=http://host.docker.internal:8000
+  #     - CLIENT_ID=17
+  #     - CLIENT_IP=host.docker.internal:8021
+  #     - SPLIT_SERVER=http://host.docker.internal:8002
+  #     - FED_SERVER=http://host.docker.internal:8001
+  #     - NVIDIA_VISIBLE_DEVICES=all
+  #   volumes:
+  #     - ./simulate/volumes/client17:/app/data/
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - capabilities: [gpu]
+
+  # client18:
+  #   container_name: client18
+  #   image: frogdance/microservice_sync_splitfed_client:latest
+  #   networks:
+  #     - cluster_interface
+  #   ports:
+  #     - "8022:8000"
+  #   environment:
+  #     - BACKEND_URL=http://host.docker.internal:8000
+  #     - CLIENT_ID=18
+  #     - CLIENT_IP=host.docker.internal:8022
+  #     - SPLIT_SERVER=http://host.docker.internal:8002
+  #     - FED_SERVER=http://host.docker.internal:8001
+  #     - NVIDIA_VISIBLE_DEVICES=all
+  #   volumes:
+  #     - ./simulate/volumes/client18:/app/data/
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - capabilities: [gpu]
+
+  # client19:
+  #   container_name: client19
+  #   image: frogdance/microservice_sync_splitfed_client:latest
+  #   networks:
+  #     - cluster_interface
+  #   ports:
+  #     - "8023:8000"
+  #   environment:
+  #     - BACKEND_URL=http://host.docker.internal:8000
+  #     - CLIENT_ID=19
+  #     - CLIENT_IP=host.docker.internal:8023
+  #     - SPLIT_SERVER=http://host.docker.internal:8002
+  #     - FED_SERVER=http://host.docker.internal:8001
+  #     - NVIDIA_VISIBLE_DEVICES=all
+  #   volumes:
+  #     - ./simulate/volumes/client19:/app/data/
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - capabilities: [gpu]
+
+  # client20:
+  #   container_name: client20
+  #   image: frogdance/microservice_sync_splitfed_client:latest
+  #   networks:
+  #     - cluster_interface
+  #   ports:
+  #     - "8024:8000"
+  #   environment:
+  #     - BACKEND_URL=http://host.docker.internal:8000
+  #     - CLIENT_ID=20
+  #     - CLIENT_IP=host.docker.internal:8024
+  #     - SPLIT_SERVER=http://host.docker.internal:8002
+  #     - FED_SERVER=http://host.docker.internal:8001
+  #     - NVIDIA_VISIBLE_DEVICES=all
+  #   volumes:
+  #     - ./simulate/volumes/client20:/app/data/
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - capabilities: [gpu]
+
+networks:
+  cluster_interface:
+    driver: bridge

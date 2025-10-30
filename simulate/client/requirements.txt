@@ -1,0 +1,8 @@
+torch
+fastapi
+uvicorn[standard]
+pydantic
+requests
+tqdm
+loguru
+python-multipart

@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  database:
+    container_name: database
+    image: postgres:latest
+    networks:
+      - cluster_interface
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    volumes:
+      - ./simulate/database:/var/lib/postgresql/data
+
+  backend:
+    container_name: backend
+    image: frogdance/microservice_sync_splitfed_backend:latest
+    networks:
+      - cluster_interface
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_HOST=database
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=postgres
+    volumes:
+      - ./simulate/backend:/app/log
+    depends_on:
+      - database
+
+  dashboard:
+    container_name: dashboard
+    image: frogdance/microservice_sync_splitfed_dashboard:latest
+    ports:
+      - "8501:8501"
+    environment:
+      - DB_HOST=database
+      - DB_PORT=5432
+      - DB_NAME=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+    depends_on:
+      - database
+    networks:
+      - cluster_interface
+
+networks:
+  cluster_interface:
+    driver: bridge

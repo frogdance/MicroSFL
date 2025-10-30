@@ -1,0 +1,9 @@
+simulate/volumes/*
+simulate/volumes2/*
+simulate/database/*
+
+*__pycache__
+*.pyc
+*.pt
+notebooks/data/*
+*.csv
